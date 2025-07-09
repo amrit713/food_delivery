@@ -3,10 +3,11 @@ package main
 import (
 	"log"
 
-	"github.com/amrit713/bank-api/config"
-	"github.com/amrit713/bank-api/internal/db"
-	"github.com/amrit713/bank-api/internal/models"
-	"github.com/amrit713/bank-api/internal/routes"
+	"github.com/amrit713/food-delivery/config"
+	"github.com/amrit713/food-delivery/internal/db"
+	"github.com/amrit713/food-delivery/internal/models"
+	"github.com/amrit713/food-delivery/internal/routes"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
 )
@@ -21,7 +22,23 @@ func main() {
 	})
 
 	db.ConnectDB()
-	db.DB.Exec("CREATE EXTENSION IF NOT EXISTS pgcrypto;")
+
+	extQuery := `CREATE EXTENSION IF NOT EXISTS pgcrypto;`
+	if err := db.DB.Exec(extQuery).Error; err != nil {
+		log.Fatal("failed to create pgcrypto extension:", err)
+	}
+
+	// ✅ Create ENUM type for user roles
+	enumQuery := `
+	DO $$ BEGIN
+		IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'user_role') THEN
+			CREATE TYPE user_role AS ENUM ('admin', 'user', 'rider');
+		END IF;
+	END $$;
+	`
+	if err := db.DB.Exec(enumQuery).Error; err != nil {
+		log.Fatal("failed to create enum:", err)
+	}
 
 	err := db.DB.AutoMigrate(
 		&models.User{},

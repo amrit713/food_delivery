@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/amrit713/bank-api/config"
+	"github.com/amrit713/food-delivery/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"

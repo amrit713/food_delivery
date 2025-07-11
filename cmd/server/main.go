@@ -12,6 +12,11 @@ import (
 	"github.com/joho/godotenv"
 )
 
+// @title           Food Delivery API
+// @version         1.0
+// @description     API for a Go-based food delivery app
+// @host            localhost:4000
+// @BasePath        /api/v1
 func main() {
 
 	_ = godotenv.Load()

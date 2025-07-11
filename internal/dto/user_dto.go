@@ -5,6 +5,7 @@ import (
 	"github.com/google/uuid"
 )
 
+// TODO: need store this user in local rather than model user for more secure
 type UserResponse struct {
 	ID    uuid.UUID `json:"id"`
 	Name  string    `json:"name"`

@@ -28,4 +28,5 @@ func userRoute(api fiber.Router) {
 	//auth route
 	userApi.Post("/sign-up", authController.Register)
 	userApi.Post("/login", authController.Login)
+	userApi.Post("/logout", authController.Logout)
 }

@@ -78,3 +78,18 @@ func (c *AuthController) Login(ctx *fiber.Ctx) error {
 		"code":   fiber.StatusOK, "data": dto.AuthResponse{User: user.User, Token: user.Token},
 	})
 }
+
+func (c *AuthController) Logout(ctx *fiber.Ctx) error {
+	ctx.Cookie(&fiber.Cookie{
+		Name:     "jwt_token",
+		Value:    "",                             // Clear the value
+		Expires:  time.Now().Add(-1 * time.Hour), // Expire the cookie
+		MaxAge:   -1,                             // Expire immediately
+		Path:     "/",                            // Match original cookie path
+		HTTPOnly: true,
+	})
+
+	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
+		"message": "Logout sucessfully",
+	})
+}

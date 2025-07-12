@@ -34,3 +34,45 @@ A full-featured **Food Delivery REST API** built in **Go** using [Fiber](https:/
 
 ## 📁 Project Structure
 
+food-delivery/
+│
+├── cmd/ # App entrypoint (main.go)
+├── internal/ # Main application packages
+│ ├── controllers/ # Fiber route handlers
+│ ├── services/ # Business logic
+│ ├── repositories/ # DB access via GORM
+│ ├── models/ # GORM models
+│ ├── routes/ # API versioned routes
+│ └── middlewares/ # JWT auth, protected routes
+│
+├── pkg/ # Shared utils and packages
+│ └── utils/ # Password hash, JWT, etc
+│
+├── docs/ # Swagger docs
+├── go.mod / go.sum # Dependencies
+
+
+
+---
+
+## 🛠️ Setup Instructions
+
+### 1. Clone and install
+```bash
+git clone https://github.com/amrit713/food_delivery.git
+cd food-delivery
+go mod tidy
+```
+
+2. Set up PostgreSQL
+Make sure you have PostgreSQL running locally and create a database:
+
+```bash
+CREATE DATABASE food_delivery;
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";```
+
+Update your DB connection string in config/db.go or .env.
+
+
+

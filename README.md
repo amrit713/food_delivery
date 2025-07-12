@@ -116,6 +116,6 @@ Feel free to open issues or PRs for enhancements and bugfixes.
 
 ## 📄 License
 
-MIT License. © 2025 [Your Name](https://github.com/YOUR_USERNAME)
+MIT License. © 2025 [Amrit Ghimire](https://github.com/amrit713)
 
 ---
